@@ -1,2 +1,2 @@
 # eleme-app
-a app for eat
+an app for eat
