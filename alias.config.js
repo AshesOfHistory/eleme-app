@@ -3,7 +3,7 @@ function resolve(dir) {
 }
 
   module.exports = {
-  resolve: {
+    resolve: {
     alias: {
       '@': resolve('src'),
       'views': resolve('src/views'),
