@@ -45,20 +45,19 @@
       </el-carousel-item>
     </el-carousel>
 
-    <div style="position:relative">
-      <swiper :options="swiperOption">
-        <swiper-slide><img class="s-img" src="../assets/4.jpg"></swiper-slide>
-        <swiper-slide><img class="s-img" src="../assets/2.jpg"></swiper-slide>
-        <swiper-slide><img class="s-img" src="../assets/3.jpg"></swiper-slide>
-        <swiper-slide><img class="s-img" src="../assets/5.jpg"></swiper-slide>
-        <swiper-slide><img class="s-img" src="../assets/6.jpg"></swiper-slide>
-      </swiper>
-      <div class="swiper-scrollbar"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
-      <!--以下看需要添加-->
-    </div>
+    <!--<div style="position:relative">-->
+      <!--<swiper :options="swiperOption">-->
+        <!--<swiper-slide><img class="s-img" src="../assets/4.jpg"></swiper-slide>-->
+        <!--<swiper-slide><img class="s-img" src="../assets/2.jpg"></swiper-slide>-->
+        <!--<swiper-slide><img class="s-img" src="../assets/3.jpg"></swiper-slide>-->
+        <!--<swiper-slide><img class="s-img" src="../assets/5.jpg"></swiper-slide>-->
+        <!--<swiper-slide><img class="s-img" src="../assets/6.jpg"></swiper-slide>-->
+      <!--</swiper>-->
+      <!--<div class="swiper-scrollbar"></div>-->
+      <!--<div class="swiper-button-next"></div>-->
+      <!--<div class="swiper-button-prev"></div>-->
+      <!--<div class="swiper-pagination"></div>-->
+    <!--</div>-->
 
   </div>
 </template>
