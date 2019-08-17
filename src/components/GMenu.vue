@@ -5,6 +5,8 @@
       class="el-menu-header"
       mode="horizontal"
       @select="handleSelect"
+      text-color="#333"
+      active-text-color="#F38B08"
     >
       <el-menu-item index="1">Home</el-menu-item>
       <el-menu-item index="2">Abork</el-menu-item>
