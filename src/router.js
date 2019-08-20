@@ -2,6 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Index from './views/Index';
 import Register from './views/Register';
+import About from './views/About'
+import News from './views/News';
+
 // import Image from './assets/1.jpg';
 
 
@@ -24,6 +27,16 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
-    }
+    },
+    {
+      path: '/About',
+      name: 'About',
+      component: About
+    },
+    {
+      path: '/News',
+      name: 'News',
+      component: News
+    },
   ],
 });

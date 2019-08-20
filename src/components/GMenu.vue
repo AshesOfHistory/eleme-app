@@ -8,14 +8,14 @@
       text-color="#333"
       active-text-color="#F38B08"
     >
-      <el-menu-item index="1">Home</el-menu-item>
-      <el-menu-item index="2">Abork</el-menu-item>
-      <el-menu-item index="3">News</el-menu-item>
+      <el-menu-item index="Index">Home</el-menu-item>
+      <el-menu-item index="About">About Us</el-menu-item>
+      <el-menu-item index="News">News</el-menu-item>
       <el-submenu index="4" mode="vertical">
         <template slot="title">Products</template>
         <el-menu-item index="4-1">Lumitek Lighting</el-menu-item>
         <el-menu-item index="4-2">Lumitek</el-menu-item>
-        <el-menu-item index="4-3">anKuoo</el-menu-item>
+        <el-menu-item index="4-3">AnKuoo</el-menu-item>
       </el-submenu>
       <el-submenu index="5" mode="vertical">
         <template slot = 'title'>Solution</template>
@@ -50,6 +50,7 @@
     },
     methods: {
       handleSelect(index,indexPath,item){
+        this.$router.push(index)
         // console.log(index,indexPath,item)
       }
     },
