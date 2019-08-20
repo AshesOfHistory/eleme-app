@@ -8,8 +8,7 @@
       <div style="width:75%;padding:0 10px 10px;">
         <page-address-right></page-address-right>
         <div class="page-content">
-          <page-content v-if="asideIndex == 0"></page-content>
-          <page-list-content v-else></page-list-content>
+          <g-content :aside-item="asideItem"></g-content>
         </div>
       </div>
     </div>
@@ -17,31 +16,32 @@
 </template>
 
 <script>
-  import PageContent from './components/PageContent'
-  import PageListContent from './components/PageListContent'
+  import GContent from './components/Content'
   export default {
     model: {},
     props: {},
-    components: {PageContent,PageListContent},
+    components: {GContent},
     created() {
     },
     mounted() {
     },
     data() {
       return {
-        asideItemArr: ['Company Indroction','Honor Qualifications', 'Equipment Demonstration', 'The Businese Scope', 'LED Laboratory'],
-        // pageContentArr: [
-        //   {
-        //     title: ['HONESTY&CREDIBILITY','TEAMWORK','INNOVATION'],
-        //     content: ''
-        //   },
-        // ],
+        asideItemArr: [
+          {title: 'Company Indroction',pageType:'page',id:1},
+          {title: 'Honor Qualifications',pageType:'list',id:2},
+          {title: 'Equipment Demonstration',pageType:'list',id:3},
+          {title: 'The Businese Scope',pageType:'image',id:4},
+          {title: 'LED Laboratory',pageType:'list',id:5},
+        ],
         asideIndex: 1,
+        asideItem: {},
       };
     },
     methods: {
-      handleSelect(index){
+      handleSelect(index, item){
         this.asideIndex = index
+        this.asideItem = item
       },
     },
     computed: {

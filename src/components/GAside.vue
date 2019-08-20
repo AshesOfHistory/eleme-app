@@ -10,8 +10,8 @@
         <div class="aside-submenu-item"
              :class="{active: selectedIndex == index}"
              v-for="(item,index) in asideItems" :key="index"
-             @click="selected(index)">
-          {{item}}
+             @click="selected(index,item)">
+          {{item.title}}
         </div>
       </div>
     </div>
@@ -36,9 +36,9 @@
       };
     },
     methods: {
-      selected(index){
+      selected(index,item){
         this.selectedIndex = index;
-        this.$emit('select',index)
+        this.$emit('select',index,item)
       }
     },
     computed: {},

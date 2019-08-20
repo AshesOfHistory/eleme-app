@@ -5,6 +5,7 @@ import Register from './views/Register';
 import About from './views/about/About'
 import News from './views/News';
 import NotFound from './views/404';
+import Contact from './views/Contact'
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/404',
       name: '404',
       component: NotFound
+    },
+    {
+      path: '/Contact',
+      name: 'contact',
+      component: Contact
     },
     {
       path: '*',

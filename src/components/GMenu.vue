@@ -29,7 +29,7 @@
         <el-menu-item index="5-9">Work</el-menu-item>
       </el-submenu>
       <el-menu-item index="6">Download</el-menu-item>
-      <el-menu-item index="7">Contack Us</el-menu-item>
+      <el-menu-item index="Contact">Contact Us</el-menu-item>
     </el-menu>
   </div>
 </template>

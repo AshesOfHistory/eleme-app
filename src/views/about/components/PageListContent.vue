@@ -1,5 +1,6 @@
 <template>
   <div class="PageListContent">
+
     <div class="page-content-title">Honor Qualifications</div>
     <div class="flex-box" style="justify-content: flex-start;flex-wrap: wrap;">
       <div class="img-box" v-for="(item,index) in showArr" :key="index">
