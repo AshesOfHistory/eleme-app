@@ -6,7 +6,7 @@
         :key="index"
         style="overflow: hidden;"
       >
-        <img :src="require('../assets/'+(index+1)+'.jpg')" alt="" style="width:100%;height:100%;">
+        <img :src="require('../assets/index'+(index+1)+'.jpg')" alt="" style="width:100%;height:100%;">
       </el-carousel-item>
     </el-carousel>
 
@@ -18,15 +18,15 @@
             v-for="(item,index1) in 3"
             :key="index1"
             style="overflow: hidden">
-            <img :src="require('../assets/1-' + (index1 + 1) + '.jpg')" alt="" style="width:100%;height:100%;">
+            <img :src="require('../assets/index/1-' + (index1 + 1) + '.jpg')" alt="" style="width:100%;height:100%;">
           </el-carousel-item>
         </el-carousel>
       </div>
       <div style="width:50%;padding:0 10px 10px;">
-        <div style="border-bottom:1px dashed #3c3c3c;display: flex;width:100%;padding-bottom:7px;">
-          <div style="font-size:24px;">News</div>
+        <div class="news-header-wrapper">
+          <div class="news-header-title">News</div>
           <div class="flex-end-wrapper">
-            <div class="more">MORE>></div>
+            <div class="more" @click="$router.push('/News')">MORE>></div>
           </div>
         </div>
 
@@ -92,15 +92,22 @@
     opacity: 0.75;
   }
 
-
-  .more{
-    font-size: 16px;
-    color:#777;
-    &:hover{
-      color:orange;
+  .news-header-wrapper{
+    border-bottom:1px dashed #3c3c3c;
+    display: flex;
+    width:100%;
+    padding-bottom:7px;
+    .news-header-title{
+      font-size: 24px;
+    }
+    .more{
+      font-size: 16px;
+      color:#777;
+      &:hover{
+        color:orange;
+      }
     }
   }
-
   .news-wrapper{
     padding:20px 10px;
     height:calc(100% - 50px);

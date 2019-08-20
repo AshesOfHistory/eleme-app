@@ -4,9 +4,7 @@ import Index from './views/Index';
 import Register from './views/Register';
 import About from './views/About'
 import News from './views/News';
-
-// import Image from './assets/1.jpg';
-
+import NotFound from './views/404';
 
 Vue.use(Router);
 
@@ -38,5 +36,14 @@ export default new Router({
       name: 'News',
       component: News
     },
+    {
+      path: '/404',
+      name: '404',
+      component: NotFound
+    },
+    {
+      path: '*',
+      redirect: '/404'
+    }
   ],
 });

@@ -2,7 +2,7 @@
   <div class="GHeader">
     <header class="g-header">
       <div class="flex-box">
-        <img src="@/assets/logo.jpg" alt="" class="logo">
+        <img src="@/assets/index/logo.jpg" alt="" class="logo">
         <div class="header-right">
           <div>
             <div style="display: flex;justify-content: flex-end">

@@ -1,3 +1,12 @@
+html,body,#app{
+  height:100%;
+  width:100%;
+}
+#app{
+  max-width: 1024px;
+  margin:0 auto;
+  font-family: 'Microsoft YaHei', 'Times New Roman';
+}
 .flex-box{
   display: flex;
 }

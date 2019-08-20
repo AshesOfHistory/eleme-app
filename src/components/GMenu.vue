@@ -42,6 +42,7 @@
     created() {
     },
     mounted() {
+      this.defaultActive = this.$route.name
     },
     data() {
       return {
