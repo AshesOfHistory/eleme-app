@@ -5,6 +5,7 @@ html,body,#app{
 #app{
   max-width: 1024px;
   margin:0 auto;
+  font-size: 14px;
   font-family: 'Microsoft YaHei', 'Times New Roman';
 }
 .flex-box{
@@ -16,5 +17,9 @@ html,body,#app{
   flex-grow: 1;
   justify-content: flex-end;
   align-items: center;
+}
+
+.orange{
+  color:#ff6600;
 }
 

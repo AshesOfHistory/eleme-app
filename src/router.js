@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Index from './views/Index';
 import Register from './views/Register';
-import About from './views/About'
+import About from './views/about/About'
 import News from './views/News';
 import NotFound from './views/404';
 

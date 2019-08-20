@@ -104,7 +104,7 @@
       font-size: 16px;
       color:#777;
       &:hover{
-        color:orange;
+        color:#ff6600;
       }
     }
   }
@@ -120,7 +120,7 @@
       font-size: 12px;
       display: flex;
       .news-title:hover{
-        color:orange;
+        color:#ff6600;
       }
     }
   }

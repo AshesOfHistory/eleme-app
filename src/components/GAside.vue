@@ -61,10 +61,10 @@
         margin-bottom: 5px;
         padding:3px 15px;
         &:hover{
-          color:orange;
+          color:#ff6600;
         }
         &.active{
-          color:orange;
+          color:#ff6600;
         }
       }
     }

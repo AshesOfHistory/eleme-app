@@ -63,7 +63,7 @@
         font-size: 16px;
         color:#777;
         &:hover{
-          color:orange;
+          color:#ff6600;
         }
       }
     }
