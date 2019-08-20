@@ -6,7 +6,7 @@
         :key="index"
         style="overflow: hidden;"
       >
-        <img :src="require('../assets/index'+(index+1)+'.jpg')" alt="" style="width:100%;height:100%;">
+        <img :src="require('../assets/index/'+(index+1)+'.jpg')" alt="" style="width:100%;height:100%;">
       </el-carousel-item>
     </el-carousel>
 

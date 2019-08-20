@@ -8,7 +8,8 @@
       <div style="width:75%;padding:0 10px 10px;">
         <page-address-right></page-address-right>
         <div class="page-content">
-          <page-content ></page-content>
+          <page-content v-if="asideIndex == 0"></page-content>
+          <page-list-content v-else></page-list-content>
         </div>
       </div>
     </div>
@@ -17,10 +18,11 @@
 
 <script>
   import PageContent from './components/PageContent'
+  import PageListContent from './components/PageListContent'
   export default {
     model: {},
     props: {},
-    components: {PageContent},
+    components: {PageContent,PageListContent},
     created() {
     },
     mounted() {
@@ -28,19 +30,19 @@
     data() {
       return {
         asideItemArr: ['Company Indroction','Honor Qualifications', 'Equipment Demonstration', 'The Businese Scope', 'LED Laboratory'],
-        pageContentArr: [
-          {
-            title: ['HONESTY&CREDIBILITY','TEAMWORK','INNOVATION'],
-            content: ''
-          },
-        ],
-        selectedIndex: 0
+        // pageContentArr: [
+        //   {
+        //     title: ['HONESTY&CREDIBILITY','TEAMWORK','INNOVATION'],
+        //     content: ''
+        //   },
+        // ],
+        asideIndex: 1,
       };
     },
     methods: {
       handleSelect(index){
-        this.selectedIndex = index
-      }
+        this.asideIndex = index
+      },
     },
     computed: {
       getPageTitle(){

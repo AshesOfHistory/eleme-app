@@ -21,6 +21,21 @@ Vue.component('PageAddress',PageAddress);
 Vue.component('GAside',GAside);
 Vue.component('PageAddressRight',PageAddressRight);
 
+Array.prototype.chunk = function(count){
+  let result = [];
+  //遍历输出成员
+  this.forEach((item,index) => {
+    //
+    let temp = Math.floor(index / count);
+    //检验数组是否初始化
+    if(!(result[temp] instanceof Array)){
+      result[temp] = new Array;
+    }
+    result[temp].push(item);
+  })
+  return result;
+}
+
 Vue.config.productionTip = false;
 
 new Vue({
