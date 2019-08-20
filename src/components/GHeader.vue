@@ -4,8 +4,17 @@
       <div class="flex-box">
         <img src="@/assets/logo.jpg" alt="" class="logo">
         <div class="header-right">
-          <div class="">
-            <el-input placeholder="Please enter the product type" v-model="search" prefix-icon="el-icon-search"></el-input>
+          <div>
+            <div style="display: flex;justify-content: flex-end">
+              <el-input
+                placeholder="Please enter the product type"
+                v-model="search"
+                prefix-icon="el-icon-search"
+                size="small"
+                align="right"
+                class="g-header-input"
+              ></el-input>
+            </div>
             <g-menu></g-menu>
           </div>
         </div>
@@ -39,6 +48,11 @@
     }
     .g-header{
       padding-bottom:20px;
+      .g-header-input{
+        margin-top:20px;
+        margin-bottom:10px;
+        width:300px;
+      }
     }
 
     .header-right{

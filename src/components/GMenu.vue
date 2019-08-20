@@ -45,7 +45,7 @@
     },
     data() {
       return {
-        defaultActive: '1',
+        defaultActive: 'Index',
       };
     },
     methods: {
