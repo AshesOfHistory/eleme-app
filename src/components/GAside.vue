@@ -3,10 +3,10 @@
     <div class="aside-wrapper" >
       <div class="aside-submenu-title">{{asideTitle}}</div>
       <div class="aside-submenu-item active"
-           v-if="typeof(asideItems) === 'string'" @click="selected(0)">
+           v-if="typeof(asideItems) === 'string' && asideItems" @click="selected(0)">
         {{asideItems}}
       </div>
-      <div v-else>
+      <div v-else-if="typeof(asideItems) === 'object'">
         <div class="aside-submenu-item"
              :class="{active: selectedIndex == index}"
              v-for="(item,index) in asideItems" :key="index"

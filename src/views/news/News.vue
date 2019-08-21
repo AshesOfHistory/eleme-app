@@ -3,7 +3,7 @@
     <img src="../../assets/news/news.jpg" alt="" style="width: 100%">
     <div class="flex-box" style="margin-top:25px;">
       <div style="width:25%;">
-        <page-address></page-address>
+        <page-address :current-child-page="'News Center'"></page-address>
         <g-aside :aside-title="getPageTitle" :aside-items="'News Center'" @select="handleSelect"></g-aside>
       </div>
       <div style="width:75%;padding:0 25px 10px;">

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <g-header v-if="getRouterName !== '404'"></g-header>
+    <g-header v-if="getRouterName"></g-header>
     <router-view/>
-    <g-footer v-if="getRouterName !== '404'"></g-footer>
+    <g-footer v-if="getRouterName"></g-footer>
   </div>
 </template>
 <script>
@@ -18,6 +18,9 @@
     },
     computed:{
       getRouterName(){
+        if(this.$route.name === '404' || this.$route.name === 'DownloadsDetail'){
+          return false
+        }
         return this.$route.name
       }
     }

@@ -3,7 +3,7 @@
     <img src="../../assets/about/banner1.jpg" alt="" width="100%;">
     <div class="flex-box" style="margin-top:25px;">
       <div style="width:25%;">
-        <page-address></page-address>
+        <page-address :current-child-page="asideItem.title"></page-address>
         <g-aside :aside-title="getPageTitle" :aside-items="asideItemArr" @select="handleSelect"></g-aside>
       </div>
       <div style="width:75%;padding:0 25px 10px;">
@@ -25,6 +25,7 @@
     created() {
     },
     mounted() {
+      this.asideItem = this.asideItemArr[this.asideIndex]
     },
     data() {
       return {
@@ -35,7 +36,7 @@
           {title: 'The Businese Scope',pageType:'image',id:4},
           {title: 'LED Laboratory',pageType:'list3',id:5},
         ],
-        asideIndex: 1,
+        asideIndex: 0,
         asideItem: {},
       };
     },

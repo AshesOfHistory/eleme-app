@@ -3,7 +3,7 @@
     <div style="font-size: 16px;text-align: left;">
       Home -
       <span style="color:#999;">{{getPageTitle}}</span>
-      - News Center
+      - {{currentChildPage}}
     </div>
   </div>
 </template>
@@ -11,7 +11,9 @@
 <script>
   export default {
     model: {},
-    props: {},
+    props: {
+      currentChildPage:String,
+    },
     components: {},
     created() {
     },

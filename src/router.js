@@ -7,6 +7,8 @@ import News from './views/news/News';
 import NewsDetail from './views/news/components/detail'
 import NotFound from './views/404';
 import Contact from './views/Contact';
+import Downloads from './views/downloads/Downloads'
+import DownloadsDetail from './views/downloads/components/detail'
 
 Vue.use(Router);
 
@@ -40,10 +42,20 @@ export default new Router({
       children:[
         {
           path: 'detail',
-          name: 'detail',
+          name: 'NewsDetail',
           component: NewsDetail
         }
       ]
+    },
+    {
+      path: '/Downloads',
+      name: 'Downloads',
+      component: Downloads,
+    },
+    {
+      path: '/DownloadsDetail',
+      name: 'DownloadsDetail',
+      component: DownloadsDetail
     },
     {
       path: '/404',
