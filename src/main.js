@@ -36,6 +36,16 @@ Array.prototype.chunk = function(count){
   return result;
 }
 
+Vue.prototype.$imgSrc = (name) => {
+  let imgSrc = null
+  if (process.env.NODE_ENV === 'development') { // 开发环境
+    imgSrc = require('./assets/about/page3/' + name)
+  } else { // 生产环境
+    imgSrc = require('./assets/about/page3/' + name)
+  }
+  return imgSrc
+}
+
 Vue.config.productionTip = false;
 
 new Vue({
