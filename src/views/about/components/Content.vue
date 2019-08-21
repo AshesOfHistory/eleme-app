@@ -1,7 +1,8 @@
 <template>
   <div class="Content">
     <page-content v-if="pageType == 'page'"></page-content>
-    <page-list-content v-else-if="pageType == 'list'" ></page-list-content>
+    <page-list-content v-else-if="pageType == 'list1'" ></page-list-content>
+    <page-list-2-Content v-else-if="pageType == 'list2'"></page-list-2-Content>
     <div v-else>
       <img src="../../../assets/about/business-scope.jpg" alt="" style="width:100%;">
     </div>
@@ -11,12 +12,13 @@
 <script>
   import PageContent from './PageContent'
   import PageListContent from './PageListContent'
+  import PageList2Content from './PageList2Content'
   export default {
     model: {},
     props: {
       asideItem: Object,
     },
-    components: {PageContent,PageListContent},
+    components: {PageContent,PageListContent,PageList2Content},
     created() {
     },
     mounted() {

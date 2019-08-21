@@ -32,7 +32,7 @@
     },
     data() {
       return {
-        selectedIndex: 1,
+        selectedIndex: 0,
       };
     },
     methods: {

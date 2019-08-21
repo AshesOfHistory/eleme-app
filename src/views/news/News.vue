@@ -63,22 +63,22 @@
         selectedIndex: 0,
         navIndex: 0,
         newsList: [
-          {imgUrl: '',title: 'HONG KONG INTERNATIONAL LIGHTING FAIR',content: 'HONG KONG INTERNATIONAL LIGHTING FAIR...',date: '2019-08-15',id:1},
-          {imgUrl: '',title: 'ELECTRIC & POWER INDONESIA 2019',content: 'ELECTRIC & POWER INDONESIA 2019...',date: '2019-08-15',id:2},
-          {imgUrl: '',title: 'interlight + intelligent building Russia',content: 'interlight + intelligent building Russia...',date: '2019-08-15',id:3},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-07-15',id:4},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-06-15',id:5},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-05-15',id:6},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-04-15',id:7},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-03-15',id:8},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-02-15',id:9},
+          {imgUrl: '',title: 'HONG KONG INTERNATIONAL LIGHTING FAIR',content: 'HONG KONG INTERNATIONAL LIGHTING FAIR...',date: '2019-08-15',id:1,typeId:1},
+          {imgUrl: '',title: 'ELECTRIC & POWER INDONESIA 2019',content: 'ELECTRIC & POWER INDONESIA 2019...',date: '2019-08-15',id:2,typeId:2},
+          {imgUrl: '',title: 'interlight + intelligent building Russia',content: 'interlight + intelligent building Russia...',date: '2019-08-15',id:3,typeId:1},
+          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-07-15',id:4,typeId:4},
+          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-06-15',id:5,typeId:1},
+          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-05-15',id:6,typeId:3},
+          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-04-15',id:7,typeId:2},
+          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-03-15',id:8,typeId:1},
+          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-02-15',id:9,typeId:1},
         ],
         navArr: [
-          {title:'All',type: '',gid:0},
-          {title:'Fairs',type: 'Fairs',gid:1},
-          {title:'Events',type: 'Events',gid:2},
-          {title:'Products Release',type: 'Products Release',gid:3},
-          {title:'Other',type: 'Other',gid:4},
+          {title:'All',type: '',typeId:0},
+          {title:'Fairs',type: 'Fairs',typeId:1},
+          {title:'Events',type: 'Events',typeId:2},
+          {title:'Products Release',type: 'Products Release',typeId:3},
+          {title:'Other',type: 'Other',typeId:4},
         ],
         newsDetail:{},
       };
@@ -92,7 +92,7 @@
         this.$router.push({path:'/News/detail?id='+item.id});
       },
       load(){
-        this.newsList.push({imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-01-15',id:10},)
+        this.newsList.push({imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-01-15',id:10,typeId:1})
       }
     },
     computed: {
@@ -112,6 +112,9 @@
         return false
       }
     },
+    filters:{
+
+    }
   };
 </script>
 

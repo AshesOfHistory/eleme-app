@@ -1,17 +1,16 @@
 <template>
   <div class="PageListContent">
 
-    <div class="page-content-title">Honor Qualifications</div>
+    <div class="page-content-title">Equipment Demonstration</div>
     <div class="flex-box" style="justify-content: flex-start;flex-wrap: wrap;">
       <div class="img-box" v-for="(item,index) in showArr" :key="item">
         <img class="img-mini"
-             :src="require('../../../assets/about/2-' + (item + 1) + '.png')"
+             :src="require('../../../assets/about/page3/3-' + (item + 1) + '.jpg')"
              @click="changeBig"
              alt="">
         <div class="center">{{item+1}}</div>
       </div>
     </div>
-
     <el-pagination
       @current-change="handleCurrentChange"
       @size-change="handleSizeChange"
@@ -37,10 +36,10 @@
     data() {
       return {
         currentPage: 1,
-        pageTotal: 8,
+        pageTotal: 44,
         pageSize: 9,
         showArr: [],
-        originArr:[],
+        originArr: []
       };
     },
     methods: {
@@ -82,11 +81,11 @@
       margin-right: 20px;
       .img-mini{
         cursor: pointer;
+        width:200px;
+        height:145px;
       }
     }
   }
-
-
 </style>
 <style lang="scss">
   .el-pager li.active{

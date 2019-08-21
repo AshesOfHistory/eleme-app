@@ -30,10 +30,10 @@
       return {
         asideItemArr: [
           {title: 'Company Indroction',pageType:'page',id:1},
-          {title: 'Honor Qualifications',pageType:'list',id:2},
-          {title: 'Equipment Demonstration',pageType:'list',id:3},
+          {title: 'Honor Qualifications',pageType:'list1',id:2,},
+          {title: 'Equipment Demonstration',pageType:'list2',id:3},
           {title: 'The Businese Scope',pageType:'image',id:4},
-          {title: 'LED Laboratory',pageType:'list',id:5},
+          {title: 'LED Laboratory',pageType:'list3',id:5},
         ],
         asideIndex: 1,
         asideItem: {},
@@ -51,6 +51,9 @@
           return 'News Center'
         }
         return this.$route.name
+      },
+      Key(){
+        return this.$route.path
       }
     },
   };

@@ -6,7 +6,7 @@ import About from './views/about/About'
 import News from './views/news/News';
 import NewsDetail from './views/news/components/detail'
 import NotFound from './views/404';
-import Contact from './views/Contact'
+import Contact from './views/Contact';
 
 Vue.use(Router);
 
@@ -31,7 +31,7 @@ export default new Router({
     {
       path: '/About',
       name: 'About',
-      component: About
+      component: About,
     },
     {
       path: '/News',
