@@ -15,7 +15,7 @@
             <div class="downloads-item flex-box" style="align-items: center;margin-top: 20px;" v-for="item in downloadsArr" :key="item.index">
               <img :src="require('@/assets/downloads/'+item.imgUrl)" alt="" style="width:87px;height:96px;">
               <div style="margin-left: 20px">{{item.title}}</div>
-              <div class="flex-end-wrapper" @click="downloadFile">
+              <div class="flex-end-wrapper" @click="downloadFile(item.pdfUrl)">
                 <img src="@/assets/downloads/pdf.jpg" alt="">
                 <span class="download-txt">download</span>
               </div>
@@ -33,9 +33,15 @@
     props: {},
     components: {},
     created() {
-      const files = require.context('@/assets/downloads', false, /\d+.(png|jpg|jpeg)$/).keys()
+      const files = require.context('@/assets/downloads', false, /\d+.(png|jpg|jpeg)$/).keys();
+      // const pdfs = require.context('@/assets/pdfs', false, /d-\d+.pdf$/).keys();
       this.downloadsArr = files.map((item,index) => {
-        return {imgUrl: item.split('./')[1],index: index,title:this.titleArr[index]}
+        return {
+          imgUrl: item.split('./')[1],
+          pdfUrl: '/pdfs/d-'+(index+1)+'.pdf',
+          index: index,
+          title:this.titleArr[index]
+        }
       })
     },
     mounted() {
@@ -47,10 +53,9 @@
       };
     },
     methods: {
-      downloadFile(){
-        this.$message('正在下载中，请稍侯...')
-        window.open('/DownloadsDetail','_blank')
-
+      downloadFile(url){
+        this.$message('正在下载中，请稍侯...');
+        window.open('/DownloadsDetail?url='+url,'_blank')
       }
     },
     computed: {
