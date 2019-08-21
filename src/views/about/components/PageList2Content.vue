@@ -3,7 +3,7 @@
 
     <div class="page-content-title">Equipment Demonstration</div>
     <div class="flex-box" style="justify-content: flex-start;flex-wrap: wrap;">
-      <div class="img-box" v-for="(item,index) in showArr" :key="item">
+      <div class="img-box" v-for="item in showArr" :key="item">
         <img class="img-mini"
              :src="require('../../../assets/about/page3/3-' + (item + 1) + '.jpg')"
              @click="changeBig"

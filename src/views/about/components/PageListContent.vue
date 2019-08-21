@@ -3,7 +3,7 @@
 
     <div class="page-content-title">Honor Qualifications</div>
     <div class="flex-box" style="justify-content: flex-start;flex-wrap: wrap;">
-      <div class="img-box" v-for="(item,index) in showArr" :key="item">
+      <div class="img-box" v-for="item in showArr" :key="item">
         <img class="img-mini"
              :src="require('../../../assets/about/2-' + (item + 1) + '.png')"
              @click="changeBig"
