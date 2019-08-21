@@ -1,11 +1,12 @@
 <template>
   <div class="About">
+    <img src="../../assets/about/banner1.jpg" alt="" width="100%;">
     <div class="flex-box" style="margin-top:25px;">
       <div style="width:25%;">
         <page-address></page-address>
         <g-aside :aside-title="getPageTitle" :aside-items="asideItemArr" @select="handleSelect"></g-aside>
       </div>
-      <div style="width:75%;padding:0 10px 10px;">
+      <div style="width:75%;padding:0 25px 10px;">
         <page-address-right></page-address-right>
         <div class="page-content">
           <g-content :aside-item="asideItem"></g-content>
@@ -80,7 +81,6 @@
     }
 
     .page-content{
-
 
     }
   }

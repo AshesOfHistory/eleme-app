@@ -1,5 +1,6 @@
 <template>
   <div class="PageAddressRight">
+    <slot></slot>
     <div class="flex-end-wrapper">
       <div class="page-address-item">HOME</div>
       <i class="el-icon-right" style="margin-left: 15px;"></i>
@@ -37,6 +38,7 @@
 
 <style lang="scss" scoped>
   .PageAddressRight {
+    display: flex;
     .page-address-item{
       margin-left: 15px;
       background: #ccc;

@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import Index from './views/Index';
 import Register from './views/Register';
 import About from './views/about/About'
-import News from './views/News';
+import News from './views/news/News';
+import NewsDetail from './views/news/components/detail'
 import NotFound from './views/404';
 import Contact from './views/Contact'
 
@@ -35,7 +36,14 @@ export default new Router({
     {
       path: '/News',
       name: 'News',
-      component: News
+      component: News,
+      children:[
+        {
+          path: 'detail',
+          name: 'detail',
+          component: NewsDetail
+        }
+      ]
     },
     {
       path: '/404',

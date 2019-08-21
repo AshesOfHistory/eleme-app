@@ -23,7 +23,7 @@
     model: {},
     props: {
       asideTitle: String,
-      asideItems: [String,Array]
+      asideItems: [String,Array],
     },
     components: {},
     created() {
@@ -41,7 +41,11 @@
         this.$emit('select',index,item)
       }
     },
-    computed: {},
+    computed: {
+
+    },
+    watch:{
+    }
   };
 </script>
 

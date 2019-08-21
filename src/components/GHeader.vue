@@ -50,7 +50,6 @@
       padding-bottom:20px;
       .g-header-input{
         margin-top:20px;
-        margin-bottom:10px;
         width:300px;
       }
     }
