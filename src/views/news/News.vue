@@ -33,7 +33,6 @@
                v-for="(item,index) in newsList"
                :key="index"
           >
-            <!--index >= 3 && index <29 ? require('../../assets/news/'+(index+1)+'.jpg') : ''-->
             <img class="news-img" :src="require('../../assets/news/'+item.SmallPic)" alt="">
             <div style="margin-left: 50px;">
               <div class="news-title" @click="toDetail(item,index)">{{item.Title}}</div>
