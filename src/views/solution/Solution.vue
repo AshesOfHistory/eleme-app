@@ -39,7 +39,7 @@
         if (this.$route.name == 'News') {
           return 'News Center'
         }
-        return this.$route.path
+        return this.$route.name
       },
       Key(){
         return this.$route.path
