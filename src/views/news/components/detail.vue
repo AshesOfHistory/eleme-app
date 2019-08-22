@@ -1,8 +1,8 @@
 <template>
   <div class="detail">
-    <div >{{detail.title}}</div>
-    <div >{{detail.content}}</div>
-    <div >{{detail.date}}</div>
+    <div >{{detail.Title}}</div>
+    <div v-html="detail.Content"></div>
+    <div >{{detail.ShowTime}}</div>
   </div>
 </template>
 

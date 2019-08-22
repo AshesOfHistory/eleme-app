@@ -9,6 +9,10 @@ import NotFound from './views/404';
 import Contact from './views/Contact';
 import Downloads from './views/downloads/Downloads'
 import DownloadsDetail from './views/downloads/components/detail'
+import Solution from './views/solution/Solution'
+import SpaceSaver from './views/solution/components/SpaceSaver'
+import editor from './views/editor'
+
 
 Vue.use(Router);
 
@@ -47,6 +51,24 @@ export default new Router({
         }
       ]
     },
+    {
+      path: '/editor',
+      name:'editor',
+      component: editor
+    },
+    {
+      path: '/Solution',
+      name: 'Solution',
+      component: Solution,
+      children:[
+        {
+          path: 'SpaceSaver',
+          name: 'SpaceSaver',
+          component: SpaceSaver
+        }
+      ]
+    },
+
     {
       path: '/Downloads',
       name: 'Downloads',

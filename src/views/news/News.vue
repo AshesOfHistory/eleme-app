@@ -10,9 +10,9 @@
         <page-address-right style="margin-bottom:10px;">
           <div class="flex-box" v-if="!isNewsDetail">
             <div class="address-nav-item"
-                 :class="{active:navIndex == index}"
+                 :class="{active:typeId == item.typeId}"
                  v-for="(item,index) in navArr"
-                 @click="navIndex = index"
+                 @click="changeNewsType(item)"
                  :key="index">
               {{item.title}}
             </div>
@@ -24,21 +24,23 @@
 
         <router-view :key="Key"></router-view>
 
+        <!--v-infinite-scroll="load"-->
         <div class="news-item-wrapper"
              v-if="!isNewsDetail"
-             v-infinite-scroll="load"
+
              style="overflow: auto">
           <div class="news-item flex-box infinite-list-item"
                v-for="(item,index) in newsList"
                :key="index"
           >
-            <img class="news-img" :src="index >= 3 && index <29 ? require('../../assets/news/'+(index+1)+'.jpg') : ''" alt="">
+            <!--index >= 3 && index <29 ? require('../../assets/news/'+(index+1)+'.jpg') : ''-->
+            <img class="news-img" :src="require('../../assets/news/'+item.SmallPic)" alt="">
             <div style="margin-left: 50px;">
-              <div class="news-title" @click="toDetail(item,index)">{{item.title}}</div>
-              <div class="news-content">{{item.content}}</div>
+              <div class="news-title" @click="toDetail(item,index)">{{item.Title}}</div>
+              <div class="news-content">{{item.Title}}...</div>
             </div>
             <div class="flex-end-wrapper">
-              <div>{{item.date}}</div>
+              <div>{{item.ShowTime.split(' ')[0]}}</div>
             </div>
           </div>
         </div>
@@ -48,37 +50,29 @@
 </template>
 
 <script>
+  import newsData from '@/data/t_news.js'
   export default {
     model: {},
     props: {},
     components: {},
     created() {
+      this.newsList = newsData.RECORDS.filter(item => item.IsShow != 0)
     },
     mounted() {
-    //  ../assets/news/1.jpg
+
     },
     data() {
       return {
         asideItemArr: ['Company Indroction','Honor Qualifications', 'Equipment Demonstration', 'The Businese Scope', 'LED Laboratory'],
         selectedIndex: 0,
-        navIndex: 0,
-        newsList: [
-          {imgUrl: '',title: 'HONG KONG INTERNATIONAL LIGHTING FAIR',content: 'HONG KONG INTERNATIONAL LIGHTING FAIR...',date: '2019-08-15',id:1,typeId:1},
-          {imgUrl: '',title: 'ELECTRIC & POWER INDONESIA 2019',content: 'ELECTRIC & POWER INDONESIA 2019...',date: '2019-08-15',id:2,typeId:2},
-          {imgUrl: '',title: 'interlight + intelligent building Russia',content: 'interlight + intelligent building Russia...',date: '2019-08-15',id:3,typeId:1},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-07-15',id:4,typeId:4},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-06-15',id:5,typeId:1},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-05-15',id:6,typeId:3},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-04-15',id:7,typeId:2},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-03-15',id:8,typeId:1},
-          {imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-02-15',id:9,typeId:1},
-        ],
+        typeId: 0,
+        newsList: [],
         navArr: [
           {title:'All',type: '',typeId:0},
-          {title:'Fairs',type: 'Fairs',typeId:1},
-          {title:'Events',type: 'Events',typeId:2},
-          {title:'Products Release',type: 'Products Release',typeId:3},
-          {title:'Other',type: 'Other',typeId:4},
+          {title:'Fairs',type: 'Fairs',typeId:3},
+          {title:'Events',type: 'Events',typeId:4},
+          {title:'Products Release',type: 'Products Release',typeId:5},
+          {title:'Other',type: 'Other',typeId:6},
         ],
         newsDetail:{},
       };
@@ -92,7 +86,35 @@
         this.$router.push({path:'/News/detail?id='+item.id});
       },
       load(){
-        this.newsList.push({imgUrl: '../assets/news/1.jpg',title: '111',content: '111...',date: '2019-01-15',id:10,typeId:1})
+        this.newsList.push({
+          "id": "10",
+          "Title": "Team building",
+          "NoteTime": "20/9/2017 11:19:19",
+          "Content": "",
+          "UserName": "",
+          "IsShow": "1",
+          "IsCommend": "0",
+          "OrderBy": "1",
+          "NewType": "6",
+          "Hits": "2171",
+          "Language": "en",
+          "Parent": "0",
+          "SmallPic": "4.jpg",
+          "WebTitle": "",
+          "WebKey": "",
+          "WebDesc": "",
+          "ShowTime": "3/6/2013 00:00:00",
+          "homecontent": "　2013.05.30 — 2013.06.01 at Fenghua, Ningbo..."
+        })
+      },
+      changeNewsType(item){
+        this.typeId = item.typeId;
+
+        if (this.typeId != 0){
+          this.newsList = newsData.RECORDS.filter(listItem => listItem.NewType == this.typeId && listItem.IsShow != 0)
+        } else {
+          this.newsList = newsData.RECORDS.filter(listItem => listItem.IsShow != 0)
+        }
       }
     },
     computed: {
@@ -106,7 +128,7 @@
         return this.$route.path
       },
       isNewsDetail(){
-        if(this.$route.name == 'detail'){
+        if(this.$route.name == 'NewsDetail'){
           return true
         }
         return false
@@ -148,7 +170,8 @@
     }
 
     .news-item-wrapper{
-      height:500px;
+      /*滚动区域限制高度*/
+      /*height:500px;*/
       .news-item{
         margin-top: 10px;
         align-items: center;
