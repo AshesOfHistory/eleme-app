@@ -4,7 +4,11 @@
     <div class="flex-box" style="margin-top:25px;">
       <div style="width:25%;">
         <page-address></page-address>
-        <g-aside :aside-title="getPageTitle" :aside-items="'News Center'" @select="handleSelect"></g-aside>
+        <g-aside :aside-title="getPageTitle" :aside-items="'News Center'" @select="handleSelect">
+          <div v-for="(item,index) in items" :key="index">
+            {{ item }}
+          </div>
+        </g-aside>
       </div>
       <div style="width:75%;padding:0 25px 10px">
         <page-address-right style="margin-bottom:10px;"></page-address-right>
@@ -15,18 +19,21 @@
 </template>
 
 <script>
+  import protype from '@/data/t_protype.js'
   export default {
     model: {},
     props: {},
     components: {},
     mixins:[],
     created() {
+      this.menuList = protype.RECORDS
     },
     mounted() {
     },
     data() {
       return {
         selectedIndex: 0,
+        menuList:[]
       };
     },
     methods: {

@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <g-header v-if="getRouterName"></g-header>
+    <g-header v-show="getRouterName"></g-header>
     <router-view/>
-    <g-footer v-if="getRouterName"></g-footer>
+    <g-footer v-show="getRouterName"></g-footer>
   </div>
 </template>
 <script>

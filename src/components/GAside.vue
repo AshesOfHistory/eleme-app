@@ -2,6 +2,7 @@
   <div class="GAside">
     <div class="aside-wrapper" >
       <div class="aside-submenu-title">{{asideTitle}}</div>
+      <slot></slot>
       <div class="aside-submenu-item active"
            v-if="typeof(asideItems) === 'string' && asideItems" @click="selected(0)">
         {{asideItems}}
