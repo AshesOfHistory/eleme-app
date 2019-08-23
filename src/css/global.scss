@@ -1,0 +1,31 @@
+html,body,#app{
+  height:100%;
+  width:100%;
+}
+#app{
+  max-width: 1024px;
+  margin:0 auto;
+  font-size: 14px;
+  font-family: 'Microsoft YaHei', 'Times New Roman';
+}
+.flex-box{
+  display: flex;
+}
+
+.flex-end-wrapper{
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.orange{
+  color:#ff6600;
+}
+
+.center{
+  text-align: center;
+}
+
+
+

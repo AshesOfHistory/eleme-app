@@ -10,7 +10,7 @@
       <div class="bullshit">
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">Make sure your URL address is filled in correctly, or click the button below to return to the home page.</div>
-        <a class="bullshit__return-home" @click.prevent="$router.push('/index')">Back Home</a>
+        <div class="bullshit__return-home" @click.prevent="$router.push('/index')">Back Home</div>
       </div>
     </div>
   </div>

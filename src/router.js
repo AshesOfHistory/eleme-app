@@ -10,7 +10,9 @@ import Contact from './views/Contact';
 import Downloads from './views/downloads/Downloads'
 import DownloadsDetail from './views/downloads/components/detail'
 import Solution from './views/solution/Solution'
-import SpaceSaver from './views/solution/components/SpaceSaver'
+import Products from './views/products/Products'
+import SolutionDetail from './views/solution/components/detail'
+import ProductsDetail from './views/products/components/detail'
 import editor from './views/editor'
 
 
@@ -57,15 +59,77 @@ export default new Router({
       component: editor
     },
     {
+      path: '/Products',
+      name: 'Products',
+      component: Products,
+      children:[
+        {
+          path: 'LumitekLighting',
+          name: 'LumitekLighting',
+          component: ProductsDetail
+        },
+        {
+          path: 'Lumitek',
+          name: 'Lumitek',
+          component: ProductsDetail
+        },
+        {
+          path: 'AnKuoo',
+          name: 'AnKuoo',
+          component: ProductsDetail
+        },
+      ]
+    },
+    {
       path: '/Solution',
       name: 'Solution',
       component: Solution,
       children:[
         {
-          path: 'SpaceSaver',
-          name: 'SpaceSaver',
-          component: SpaceSaver
-        }
+          path: ':solutionName',
+          name: 'solutionName',
+          component: SolutionDetail
+        },
+        // {
+        //   path: 'EnergySaver',
+        //   name: 'EnergySaver',
+        //   component: SolutionDetail
+        // },
+        // {
+        //   path: 'SuperFlat',
+        //   name: 'SuperFlat',
+        //   component: SolutionDetail
+        // },
+        // {
+        //   path: 'Desktop',
+        //   name: 'Desktop',
+        //   component: SolutionDetail
+        // },
+        // {
+        //   path: 'Living&Accessories',
+        //   name: 'Living&Accessories',
+        //   component: SolutionDetail
+        // },
+        // {
+        //   path: 'Comfort',
+        //   name: 'Comfort',
+        //   component: SolutionDetail
+        // },
+        // {
+        //   path: 'One-The-Go',
+        //   name: 'One-The-Go',
+        //   component: SolutionDetail
+        // },
+        // {
+        //   path: 'Work',
+        //   name: 'Work',
+        //   component: SolutionDetail
+        // },
+        // {
+        //   path: 'USBCharger',
+        //   name: 'USBCharger',
+        //   component: SolutionDetail
+        // },
       ]
     },
 
