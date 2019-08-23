@@ -61,6 +61,7 @@
       this.Key = this.$route.path;
       this.pageTitle = this.$route.name;
       this.menuList = datalist.data.solution
+      this.product_id = this.menuList.find(item => item.name == this.activeAsidePath).children[0].id;
     },
     mounted() {
       // this.$store.commit('addChildRouterProductInfo',datalist.data.productInfo.find(item => item.product_id == 150))
