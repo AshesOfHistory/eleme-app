@@ -48,7 +48,6 @@
                 :title="child.name"
                 v-for="child in item.children"
                 class="child-item"
-
                 :key="item.id+'-'+child.id">
                 <div v-if="child.children && child.children.length > 0">
                   <div v-for="grandson in child.children"
@@ -57,6 +56,7 @@
                     {{grandson.name}}
                   </div>
                 </div>
+                <div v-else class="aside-item">{{child.name}}</div>
               </el-collapse-item>
             </el-collapse>
           </el-collapse-item>
