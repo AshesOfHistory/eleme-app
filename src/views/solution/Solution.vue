@@ -1,10 +1,9 @@
 <template>
   <div class="Solution">
     <img src="@/assets/solution/solution_banner.jpg" alt="" style="width:100%;">
-    <el-button @click="activeAsidePath = 'Space Saver'">切换</el-button>
     <div class="flex-box" style="margin-top:25px;">
       <div style="width:25%;">
-        <page-address></page-address>
+        <page-address :current-child-page="currentChildPage"></page-address>
         <el-collapse
           v-model="activeAsidePath"
           @change="handleChange"
@@ -64,13 +63,13 @@
       this.product_id = this.menuList.find(item => item.name == this.activeAsidePath).children[0].id;
     },
     mounted() {
-      // this.$store.commit('addChildRouterProductInfo',datalist.data.productInfo.find(item => item.product_id == 150))
     },
     data() {
       return {
         selectedIndex: 0,
         menuList:[],
         activeAsidePath: 'Space Saver',
+        currentChildPage:'30241L',
         product_id: '',
         Key: '',
         pageTitle: ''
@@ -84,14 +83,16 @@
         if(activeAsidePath){
           this.product_id = this.menuList.find(item => item.name == activeAsidePath).children[0].id;
           this.$store.commit('setActiveAsidePath',activeAsidePath)
+          console.log(this.product_id,activeAsidePath)
         }
       },
       toDetail(item){
-        if(item && item.parentId) {
-          let path = this.$route.path + '?type_id=' + item.parentId + '&product_id='+item.id
+        if(item && item.parent_id) {
+          let path = this.$route.path + '?type_id=' + item.parent_id + '&product_id='+item.id
           this.$router.push(path);
-          this.$store.commit('setFullPath',path,item.parentId,item.id);
+          this.$store.commit('setFullPath',path,item.parent_id,item.id);
           this.product_id = item.id;
+          this.currentChildPage = item.name
         }
       }
     },
@@ -102,9 +103,6 @@
         this.Key = this.$route.path;
         this.pageTitle = this.$route.name;
       },
-      $store(){
-        // this.activeAsidePath = this.$store.getters.getActiveAsidePath
-      }
     }
   };
 </script>

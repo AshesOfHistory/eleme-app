@@ -15,6 +15,7 @@
     props: {},
     components: {},
     created() {
+
     },
     mounted() {
     },
@@ -29,6 +30,12 @@
         }
         if (this.$route.name == 'About') {
           return 'ABOUT US'
+        }
+        if (this.$route.name == 'solutionName'){
+          return 'SOLUTION'
+        }
+        if (this.$route.name == 'Lumitek' || 'AnKuoo'){
+          return 'PRODUCTS'
         }
         return this.$route.name.toLocaleUpperCase()
       }

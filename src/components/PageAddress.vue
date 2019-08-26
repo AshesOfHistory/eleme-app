@@ -3,7 +3,7 @@
     <div style="font-size: 16px;text-align: left;">
       Home -
       <span style="color:#999;">{{getPageTitle}}</span>
-      - {{currentChildPage}}
+      <span v-if="currentChildPage">- {{currentChildPage}}</span>
     </div>
   </div>
 </template>
@@ -27,6 +27,9 @@
       getPageTitle(){
         if (this.$route.name == 'News') {
           return 'News Center'
+        }
+        if (this.$route.name == 'solutionName') {
+          return this.$route.path.split('/')[2]
         }
         return this.$route.name
       }
