@@ -1,7 +1,6 @@
 <template>
   <div class="Products">
     <img src="@/assets/products/b_pro.jpg" alt="" style="width:100%;">
-    <!--{{menuList}}-->
     <div class="flex-box" style="margin-top:25px" v-if="!isProductDetail">
       <div style="width:25%">
         <el-collapse
@@ -9,6 +8,7 @@
           @change="handleChange"
           accordion
           style="margin-top: 20px;">
+          {{activeAsidePath}}
           <el-collapse-item
             :title="item.name"
             :name="item.name"
@@ -17,12 +17,13 @@
             v-for="item in menuList"
             :key="item.id">
             <el-collapse
-              v-model="childAsidePath"
+              v-model="item.child_path"
               @change="handleChildChange"
               accordion
             >
               <el-collapse-item
                 :title="child.name"
+                :name="child.name"
                 v-for="child in item.children"
                 class="child-item"
                 :class="{active:child.is_active}"
@@ -36,7 +37,7 @@
                     {{grandson.name}}
                   </div>
                 </div>
-                <div v-else class="aside-item" @click="toSmartHome(child)">{{child.name}}</div>
+                <div v-else class="aside-item" @click="toSmartHome(item,child)">{{child.name}}</div>
               </el-collapse-item>
             </el-collapse>
           </el-collapse-item>
@@ -68,7 +69,33 @@
       this.pageTitle = this.$route.name;
 
       this.menuList = datalist.data.products;
-      this.type_id_3 = this.menuList.find(item => item.name == this.activeAsidePath).children[0].id;
+
+      this.deepChangeAttr(this.menuList)
+      if (this.$route.query) {
+        let {type_id_1,type_id_2,type_id_3} = this.$route.query;
+        let level1 = this.menuList.find(item => item.id == type_id_1);
+        level1.is_active = true;
+        let level2 = '';
+        let level3 = '';
+        this.activeAsidePath = level1.name;
+        if (type_id_2) {
+          level2 = level1.children.find(child => child.id == type_id_2);
+          level1.child_path = level2.name;
+          //  初始路由状态
+          level2.is_active = true
+          if (type_id_3) {
+            level3 = level2.children.find(grandChild => grandChild.id == type_id_3);
+            level3.is_active = true
+          }
+        } else {
+          level1.child_path = level1.children[0].name;
+        }
+      }
+      if (this.pageTitle == 'productDetail') {
+        this.isProductDetail = true
+      } else {
+        this.isProductDetail = false
+      }
     },
     mounted() {
     },
@@ -77,22 +104,18 @@
         Key:'',
         pageTitle: '',
         menuList: [],
-        type_id_3: '',
         activeAsidePath:'Lumitek',
-        childAsidePath: '-Switch flush type',
         isProductDetail: false,
         type_id_arr: []
       };
     },
     methods: {
       handleChange(activeAsidePath){
-        if(activeAsidePath){
-          // this.type_id_3 = this.menuList.find(item => item.name == activeAsidePath).children[0].id;
-          console.log(this.type_id_3,activeAsidePath)
-        }
+        // let level1 = this.menuList.find(item => item.name == this.$route.query.type_id_1);
+        // level1.is_active = true
       },
       handleChildChange(childAsidePath){
-        console.log(childAsidePath,'childAsidePath')
+        this.childAsidePath = childAsidePath;
       },
       deepChangeAttr(obj){
         for (let i in obj) {
@@ -105,18 +128,18 @@
       },
       toDetail(item,grandParentItem,parentItem){
         if(item && item.parent_id) {
-          let path = this.$route.path + '?type_id_1=' + grandParentItem.id + '&type_id_2=' + item.parent_id + '&type_id_3=' + item.id;
+          let path = this.$route.path + '?type_id_1=' + grandParentItem.id + '&type_id_2=' + parentItem.id + '&type_id_3=' + item.id;
           this.$router.push(path);
           this.$store.commit('setFullPath',path,item.parent_id,item.id);
-          this.type_id_3 = item.id;
-          this.deepChangeAttr(this.menuList)
+          this.deepChangeAttr(this.menuList);
           item.is_active = true;
           grandParentItem.is_active = true;
           parentItem.is_active = true
         }
       },
-      toSmartHome(child){
-        console.log(child)
+      toSmartHome(grandParentItem,parentItem){
+        let path = this.$route.path + '?type_id_1=' + grandParentItem.id + '&type_id_2=' + parentItem.id;
+        this.$router.push(path)
       }
     },
     computed: {},
@@ -124,6 +147,28 @@
       $route(){
         this.Key = this.$route.path;
         this.pageTitle = this.$route.name;
+
+        this.deepChangeAttr(this.menuList)
+        if (this.$route.query) {
+          let {type_id_1,type_id_2,type_id_3} = this.$route.query
+          let level1 = this.menuList.find(item => item.id == type_id_1);
+          level1.is_active = true;
+          let level2 = '';
+          let level3 = '';
+          this.activeAsidePath = level1.name;
+          if (type_id_2) {
+            level2 = level1.children.find(child => child.id == type_id_2);
+            level1.child_path = level2.name;
+            //  初始路由状态
+            level2.is_active = true
+            if (type_id_3) {
+              level3 = level2.children.find(grandChild => grandChild.id == type_id_3);
+              level3.is_active = true
+            }
+          } else {
+            level1.child_path = level1.children[0].name;
+          }
+        }
         if (this.pageTitle == 'productDetail') {
           this.isProductDetail = true
         } else {
@@ -171,5 +216,8 @@
   }
   .Products .child-item .el-collapse-item__header{
     background: #c2c2c2!important;
+  }
+  .Products .el-collapse-item__content{
+    padding-bottom: 0;
   }
 </style>

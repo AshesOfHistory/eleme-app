@@ -30,7 +30,11 @@
       let proList = datalist.data.products.filter(item => item.id == type_id_1);
       let router_id = '';
       if(!type_id_2 || !type_id_3){
-        router_id = proList[0].children[0].children[0].id
+        if(type_id_2 && !type_id_3){
+          router_id = type_id_2
+        } else {
+          router_id = proList[0].children[0].children[0].id
+        }
       } else {
         let level_1 = proList.filter(item => item.id == type_id_1)[0];
         let level_2 = level_1.children.filter(item1 => item1.id == type_id_2)[0];
@@ -76,7 +80,11 @@
         let proList = datalist.data.products.filter(item => item.id == type_id_1);
         let router_id = '';
         if(!type_id_2 || !type_id_3){
-          router_id = proList[0].children[0].children[0].id
+          if(type_id_2 && !type_id_3){
+            router_id = type_id_2
+          } else {
+            router_id = proList[0].children[0].children[0].id
+          }
         } else {
           let level_1 = proList.filter(item => item.id == type_id_1)[0];
           let level_2 = level_1.children.filter(item1 => item1.id == type_id_2)[0];
