@@ -32,7 +32,7 @@
                     {{grandson.name}}
                   </div>
                 </div>
-                <div v-else class="aside-item">{{child.name}}</div>
+                <div v-else class="aside-item" @click="toSmartHome(child)">{{child.name}}</div>
               </el-collapse-item>
             </el-collapse>
           </el-collapse-item>
@@ -96,6 +96,9 @@
           this.$store.commit('setFullPath',path,item.parent_id,item.id);
           this.type_id_3 = item.id;
         }
+      },
+      toSmartHome(child){
+        console.log(child)
       }
     },
     computed: {},
