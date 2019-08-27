@@ -6,7 +6,13 @@
          :key="item.id">
       <img :src="item.imgUrl" alt="" style="width:220px;height:135px;">
       <div style="font-weight: bold;margin-top: 10px">{{item.ProName}}</div>
+
     </div>
+    <div  v-if="!pro_list.length">
+      暂无产品。。。
+    </div>
+
+
   </div>
 </template>
 

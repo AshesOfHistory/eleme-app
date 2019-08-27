@@ -1,6 +1,7 @@
 <template>
   <div class="Products">
     <img src="@/assets/products/b_pro.jpg" alt="" style="width:100%;">
+    <!--{{menuList}}-->
     <div class="flex-box" style="margin-top:25px" v-if="!isProductDetail">
       <div style="width:25%">
         <el-collapse
@@ -12,6 +13,7 @@
             :title="item.name"
             :name="item.name"
             class="list-item"
+            :class="{active:item.is_active}"
             v-for="item in menuList"
             :key="item.id">
             <el-collapse
@@ -23,11 +25,13 @@
                 :title="child.name"
                 v-for="child in item.children"
                 class="child-item"
+                :class="{active:child.is_active}"
                 :key="item.id+'-'+child.id">
                 <div v-if="child.children && child.children.length > 0">
                   <div v-for="grandson in child.children"
                        class="aside-item"
-                       @click="toDetail(grandson,item)"
+                       :class="{active:grandson.is_active}"
+                       @click="toDetail(grandson,item,child)"
                        :key="item.id+'-'+child.id+'-'+grandson.id" >
                     {{grandson.name}}
                   </div>
@@ -77,6 +81,7 @@
         activeAsidePath:'Lumitek',
         childAsidePath: '-Switch flush type',
         isProductDetail: false,
+        type_id_arr: []
       };
     },
     methods: {
@@ -89,12 +94,25 @@
       handleChildChange(childAsidePath){
         console.log(childAsidePath,'childAsidePath')
       },
-      toDetail(item,parentItem){
+      deepChangeAttr(obj){
+        for (let i in obj) {
+          if(typeof obj[i] == 'object'){
+            this.deepChangeAttr(obj[i])
+          } else {
+            obj.is_active = false
+          }
+        }
+      },
+      toDetail(item,grandParentItem,parentItem){
         if(item && item.parent_id) {
-          let path = this.$route.path + '?type_id_1=' + parentItem.id + '&type_id_2=' + item.parent_id + '&type_id_3='+item.id
+          let path = this.$route.path + '?type_id_1=' + grandParentItem.id + '&type_id_2=' + item.parent_id + '&type_id_3=' + item.id;
           this.$router.push(path);
           this.$store.commit('setFullPath',path,item.parent_id,item.id);
           this.type_id_3 = item.id;
+          this.deepChangeAttr(this.menuList)
+          item.is_active = true;
+          grandParentItem.is_active = true;
+          parentItem.is_active = true
         }
       },
       toSmartHome(child){
@@ -144,6 +162,12 @@
   }
   .Products .list-item .el-collapse-item__header{
     background: #888!important;
+  }
+  .Products .list-item.active>div>.el-collapse-item__header{
+    color: #ff6600!important;
+  }
+  .Products .child-item.active>div>.el-collapse-item__header{
+    color: #ff6600!important;
   }
   .Products .child-item .el-collapse-item__header{
     background: #c2c2c2!important;
