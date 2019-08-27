@@ -14,6 +14,7 @@ import Products from './views/products/Products'
 import SolutionDetail from './views/solution/components/detail'
 import ProductsDetail from './views/products/components/detail'
 import editor from './views/editor'
+import productDetail from './views/products/components/productDetail'
 
 
 Vue.use(Router);
@@ -79,6 +80,11 @@ export default new Router({
           component: ProductsDetail
         },
       ]
+    },
+    {
+      path: '/productDetail',
+      name: 'productDetail',
+      component: productDetail
     },
     {
       path: '/Solution',

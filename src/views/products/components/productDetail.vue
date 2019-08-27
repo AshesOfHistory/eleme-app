@@ -1,7 +1,8 @@
 <template>
   <div class="productDetail">
-    detail
-    <div v-html="content"></div>
+    <img src="@/assets/products/b_pro.jpg" alt="" style="width:100%;">
+    <page-address-right style="margin-bottom:20px;margin-top: 25px;"></page-address-right>
+    <div class="product-content" v-html="product.Content"></div>
   </div>
 </template>
 
@@ -10,31 +11,48 @@
   export default {
     model: {},
     props: {
-      productInfo:Object
     },
     components: {},
     mixins: [],
     created() {
+      let {product_id} = this.$route.query;
+      if(product_id) {
+        this.product = product.RECORDS.find(item => item.id == product_id)
+      }
     },
     mounted() {
     },
     data() {
       return {
-        content: ''
+        product: {}
       };
     },
     methods: {},
-    computed: {},
+    computed: {
+    },
     watch: {
-      productInfo(val){
-        this.content = val && val.Content ? val.Content : ''
+      $route(val){
+        let {product_id} = this.$route.query;
+        if(product_id) {
+          this.product = product.RECORDS.find(item => item.id == product_id)
+        }
       },
     },
     filters: {}
   };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .productDetail {
+    .product-content table{
+      margin:0 auto;
+    }
+    a{
+      text-decoration: none;
+      color:#333!important;
+      &:hover{
+        color:#ff6600!important;
+      }
+    }
   }
 </style>

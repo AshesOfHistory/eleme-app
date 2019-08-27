@@ -57,8 +57,9 @@
     methods: {
       toDetail(product){
         // console.log(type_id_1,type_id_2,type_id_3,product.id)
-        console.log(product)
-        this.$emit('product',product)
+        // console.log(product)
+        this.$router.push({path:'/productDetail',query:{product_id:product.id}})
+        this.$store.commit('setProduct',product)
       }
     },
     computed: {},

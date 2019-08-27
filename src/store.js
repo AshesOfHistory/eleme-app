@@ -34,7 +34,8 @@ export default new Vuex.Store({
     currentFullPath:'index',
     type_id: '',
     product_id: '',
-    activeAsidePath: ''
+    activeAsidePath: '',
+    product: {}
   },
   mutations: {
     addChildRouterProductInfo(state,info){//自定义改变state初始值的方法，这里面的参数除了state之外还可以再传额外的参数(变量或对象);
@@ -47,6 +48,9 @@ export default new Vuex.Store({
     },
     setActiveAsidePath(state,activeAsidePath){
       state.activeAsidePath = activeAsidePath
+    },
+    setProduct(state,product){
+      state.product = product
     }
   },
   actions: {
@@ -61,6 +65,9 @@ export default new Vuex.Store({
     },
     getActiveAsidePath(state){
       return state.activeAsidePath
+    },
+    getProduct(state){
+      return state.product
     }
   }
 });

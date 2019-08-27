@@ -40,12 +40,11 @@
       </div>
       <div style="width:75%;padding:0 25px 10px">
         <page-address-right style="margin-bottom:10px;"></page-address-right>
-        <router-view :key="Key" :product="handleProduct"></router-view>
+        <router-view :key="Key"></router-view>
       </div>
     </div>
 
     <div v-else>
-      <page-address-right style="margin-bottom:10px;"></page-address-right>
       <product-detail :product-info="product"></product-detail>
     </div>
   </div>
@@ -78,7 +77,6 @@
         activeAsidePath:'Lumitek',
         childAsidePath: '-Switch flush type',
         isProductDetail: false,
-        product: {}
       };
     },
     methods: {
@@ -90,10 +88,6 @@
       },
       handleChildChange(childAsidePath){
         console.log(childAsidePath,'childAsidePath')
-      },
-      handleProduct(product){
-        console.log(product)
-        this.product = product
       },
       toDetail(item,parentItem){
         if(item && item.parent_id) {
