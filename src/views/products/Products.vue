@@ -89,6 +89,10 @@
           }
         } else {
           level1.child_path = level1.children[0].name;
+          level2 = level1.children[0];
+          level3 = level2.children[0];
+          level2.is_active = true;
+          level3.is_active = true;
         }
       }
       if (this.pageTitle == 'productDetail') {
@@ -167,6 +171,10 @@
             }
           } else {
             level1.child_path = level1.children[0].name;
+            level2 = level1.children[0];
+            level3 = level2.children[0];
+            level2.is_active = true;
+            level3.is_active = true;
           }
         }
         if (this.pageTitle == 'productDetail') {
