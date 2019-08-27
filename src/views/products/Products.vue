@@ -1,33 +1,8 @@
 <template>
   <div class="Products">
     <img src="@/assets/products/b_pro.jpg" alt="" style="width:100%;">
-    <div class="flex-box" style="margin-top:25px">
+    <div class="flex-box" style="margin-top:25px" v-if="!isProductDetail">
       <div style="width:25%">
-        <!--<div>-->
-          <!--<div class="aside-level1-item">-->
-            <!--<div class="aside-title">Lumitek</div>-->
-            <!--<div class="aside-content">-->
-              <!--<div v-for="item in menuList[0].children" :key="item.id">-->
-                <!--{{ item.name }}-->
-                <!--<div v-for="child in item.children" :key="child.id">-->
-                  <!--{{ child.name }}-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="aside-level1-item">-->
-            <!--<div class="aside-title">Ankuoo</div>-->
-            <!--<div class="aside-content">-->
-              <!--<div v-for="item in menuList[1].children" :key="item.id">-->
-                <!--{{ item.name }}-->
-                <!--<div v-for="child in item.children" :key="child.id">-->
-                  <!--{{ child.name }}-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
         <el-collapse
           v-model="activeAsidePath"
           @change="handleChange"
@@ -52,6 +27,7 @@
                 <div v-if="child.children && child.children.length > 0">
                   <div v-for="grandson in child.children"
                        class="aside-item"
+                       @click="toDetail(grandson,item)"
                        :key="item.id+'-'+child.id+'-'+grandson.id" >
                     {{grandson.name}}
                   </div>
@@ -64,8 +40,13 @@
       </div>
       <div style="width:75%;padding:0 25px 10px">
         <page-address-right style="margin-bottom:10px;"></page-address-right>
-        <router-view :key="Key"></router-view>
+        <router-view :key="Key" :product="handleProduct"></router-view>
       </div>
+    </div>
+
+    <div v-else>
+      <page-address-right style="margin-bottom:10px;"></page-address-right>
+      <product-detail :product-info="product"></product-detail>
     </div>
   </div>
 </template>
@@ -73,17 +54,18 @@
 <script>
   import protype from '@/data/t_protype.js'
   import datalist from '@/data/solution_products.js'
+  import ProductDetail from './components/productDetail'
   export default {
     model: {},
     props: {},
-    components: {},
+    components: {ProductDetail},
     mixins: [],
     created() {
       this.Key = this.$route.path;
       this.pageTitle = this.$route.name;
 
-      this.menuList = datalist.data.products
-      this.product_id = this.menuList.find(item => item.name == this.activeAsidePath).children[0].id;
+      this.menuList = datalist.data.products;
+      this.type_id_3 = this.menuList.find(item => item.name == this.activeAsidePath).children[0].id;
     },
     mounted() {
     },
@@ -92,28 +74,33 @@
         Key:'',
         pageTitle: '',
         menuList: [],
-        product_id: '',
+        type_id_3: '',
         activeAsidePath:'Lumitek',
-        childAsidePath: '-Switch flush type'
+        childAsidePath: '-Switch flush type',
+        isProductDetail: false,
+        product: {}
       };
     },
     methods: {
       handleChange(activeAsidePath){
         if(activeAsidePath){
-          this.product_id = this.menuList.find(item => item.name == activeAsidePath).children[0].id;
-          // this.$store.commit('setActiveAsidePath',activeAsidePath)
-          console.log(this.product_id,activeAsidePath)
+          // this.type_id_3 = this.menuList.find(item => item.name == activeAsidePath).children[0].id;
+          console.log(this.type_id_3,activeAsidePath)
         }
       },
       handleChildChange(childAsidePath){
-
+        console.log(childAsidePath,'childAsidePath')
       },
-      toDetail(item){
+      handleProduct(product){
+        console.log(product)
+        this.product = product
+      },
+      toDetail(item,parentItem){
         if(item && item.parent_id) {
-          let path = this.$route.path + '?type_id=' + item.parent_id + '&product_id='+item.id
+          let path = this.$route.path + '?type_id_1=' + parentItem.id + '&type_id_2=' + item.parent_id + '&type_id_3='+item.id
           this.$router.push(path);
           this.$store.commit('setFullPath',path,item.parent_id,item.id);
-          this.product_id = item.id;
+          this.type_id_3 = item.id;
         }
       }
     },
@@ -122,6 +109,11 @@
       $route(){
         this.Key = this.$route.path;
         this.pageTitle = this.$route.name;
+        if (this.pageTitle == 'productDetail') {
+          this.isProductDetail = true
+        } else {
+          this.isProductDetail = false
+        }
       },
     },
     filters: {}

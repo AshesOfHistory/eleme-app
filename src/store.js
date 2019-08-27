@@ -12,8 +12,8 @@ export default new Vuex.Store({
       {routerName:'News',indexPath:'/News',value:'News',isActive:false,children:[]},
       {routerName:'Products',indexPath:'/Products',value:'Products',isActive:false,children:[
           // {routerName:'LumitekLighting',indexPath:'/Products/LumitekLighting',value:'Lumitek Lighting',isActive:false,children:[]},
-          {routerName:'Lumitek',indexPath:'/Products/Lumitek',value:'Lumitek',isActive:false,children:[]},
-          {routerName:'AnKuoo',indexPath:'/Products/AnKuoo',value:'AnKuoo',isActive:false,children:[]},
+          {routerName:'Lumitek?type_id_1=3',indexPath:'/Products/Lumitek',value:'Lumitek',isActive:false,children:[]},
+          {routerName:'AnKuoo?type_id_1=4',indexPath:'/Products/AnKuoo',value:'AnKuoo',isActive:false,children:[]},
         ]
       },
       {routerName:'Solution',indexPath:'/Solution',value:'Solution',isActive:false,children:[

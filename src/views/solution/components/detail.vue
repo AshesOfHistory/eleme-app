@@ -7,7 +7,6 @@
 <script>
   import prolist from '@/data/t_products.js'
   import datalist from '@/data/solution_products.js'
-  import store from '@/store.js'
   export default {
     model: {},
     props: {},
@@ -60,7 +59,6 @@
 <style lang="scss">
   .detail {
     .detail-container table{
-      /*margin:0 auto!important;*/
       width:100%;
     }
   }
