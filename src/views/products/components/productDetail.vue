@@ -1,7 +1,11 @@
 <template>
   <div class="productDetail">
     <img src="@/assets/products/b_pro.jpg" alt="" style="width:100%;">
-    <page-address-right style="margin-bottom:20px;margin-top: 25px;"></page-address-right>
+    <page-address-right style="margin-bottom:20px;margin-top: 25px;">
+      <div class="back-box" @click="$router.go(-1);">
+        <i class="el-icon-arrow-left"></i><span class="back">BACK</span>
+      </div>
+    </page-address-right>
     <div class="product-content" v-html="product.Content"></div>
   </div>
 </template>
@@ -44,6 +48,20 @@
 
 <style lang="scss">
   .productDetail {
+    .back-box{
+      font-weight: bold;
+      .el-icon-arrow-left{
+        font-weight: bold;
+      }
+      &:hover{
+        .back{
+          color:#ff6600;
+        }
+        .el-icon-arrow-left{
+          color:#ff6600;
+        }
+      }
+    }
     .product-content table{
       margin:0 auto;
     }
