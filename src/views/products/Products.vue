@@ -65,41 +65,8 @@
     components: {ProductDetail},
     mixins: [],
     created() {
-      this.Key = this.$route.path;
-      this.pageTitle = this.$route.name;
-
       this.menuList = datalist.data.products;
-
-      this.deepChangeAttr(this.menuList)
-      if (this.$route.query) {
-        let {type_id_1,type_id_2,type_id_3} = this.$route.query;
-        let level1 = this.menuList.find(item => item.id == type_id_1);
-        level1.is_active = true;
-        let level2 = '';
-        let level3 = '';
-        this.activeAsidePath = level1.name;
-        if (type_id_2) {
-          level2 = level1.children.find(child => child.id == type_id_2);
-          level1.child_path = level2.name;
-          //  初始路由状态
-          level2.is_active = true
-          if (type_id_3) {
-            level3 = level2.children.find(grandChild => grandChild.id == type_id_3);
-            level3.is_active = true
-          }
-        } else {
-          level1.child_path = level1.children[0].name;
-          level2 = level1.children[0];
-          level3 = level2.children[0];
-          level2.is_active = true;
-          level3.is_active = true;
-        }
-      }
-      if (this.pageTitle == 'productDetail') {
-        this.isProductDetail = true
-      } else {
-        this.isProductDetail = false
-      }
+      this.init()
     },
     mounted() {
     },
@@ -114,6 +81,41 @@
       };
     },
     methods: {
+      init(){
+        this.Key = this.$route.path;
+        this.pageTitle = this.$route.name;
+
+        this.deepChangeAttr(this.menuList)
+        if (this.$route.query) {
+          let {type_id_1,type_id_2,type_id_3} = this.$route.query
+          let level1 = this.menuList.find(item => item.id == type_id_1);
+          level1.is_active = true;
+          let level2 = '';
+          let level3 = '';
+          this.activeAsidePath = level1.name;
+          if (type_id_2) {
+            level2 = level1.children.find(child => child.id == type_id_2);
+            level1.child_path = level2.name;
+            //  初始路由状态
+            level2.is_active = true
+            if (type_id_3) {
+              level3 = level2.children.find(grandChild => grandChild.id == type_id_3);
+              level3.is_active = true
+            }
+          } else {
+            level1.child_path = level1.children[0].name;
+            level2 = level1.children[0];
+            level3 = level2.children[0];
+            level2.is_active = true;
+            level3.is_active = true;
+          }
+        }
+        if (this.pageTitle == 'productDetail') {
+          this.isProductDetail = true
+        } else {
+          this.isProductDetail = false
+        }
+      },
       handleChange(activeAsidePath){
         // let level1 = this.menuList.find(item => item.name == this.$route.query.type_id_1);
         // level1.is_active = true
@@ -149,39 +151,7 @@
     computed: {},
     watch: {
       $route(){
-        this.Key = this.$route.path;
-        this.pageTitle = this.$route.name;
-
-        this.deepChangeAttr(this.menuList)
-        if (this.$route.query) {
-          let {type_id_1,type_id_2,type_id_3} = this.$route.query
-          let level1 = this.menuList.find(item => item.id == type_id_1);
-          level1.is_active = true;
-          let level2 = '';
-          let level3 = '';
-          this.activeAsidePath = level1.name;
-          if (type_id_2) {
-            level2 = level1.children.find(child => child.id == type_id_2);
-            level1.child_path = level2.name;
-            //  初始路由状态
-            level2.is_active = true
-            if (type_id_3) {
-              level3 = level2.children.find(grandChild => grandChild.id == type_id_3);
-              level3.is_active = true
-            }
-          } else {
-            level1.child_path = level1.children[0].name;
-            level2 = level1.children[0];
-            level3 = level2.children[0];
-            level2.is_active = true;
-            level3.is_active = true;
-          }
-        }
-        if (this.pageTitle == 'productDetail') {
-          this.isProductDetail = true
-        } else {
-          this.isProductDetail = false
-        }
+        this.init()
       },
     },
     filters: {}
