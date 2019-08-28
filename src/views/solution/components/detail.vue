@@ -14,16 +14,7 @@
     mixins: [],
     created() {
       // type_id一定有，因为在routerName手动带入了
-      let {type_id,product_id} = this.$route.query;
-      let proList = datalist.data.solutionInfo.filter(item => item.type_id == type_id);
-      let product_name = '';
-      if(!product_id){
-        product_name = proList[0].product_name
-      } else {
-        product_name = proList.filter(item => item.product_id == product_id)[0].product_name
-      }
-      let data = prolist.RECORDS.filter(item => item.ProName == product_name && item.IsShow == 1)[0]
-      this.content = data.Content
+      this.init()
     },
     mounted() {
     },
@@ -32,21 +23,25 @@
         content: '',
       };
     },
-    methods: {},
+    methods: {
+      init(){
+        // 渲染对应的产品content
+        let {type_id_1,type_id_2} = this.$route.query;
+        let proList = datalist.data.solution.filter(item => item.id == type_id_1);
+        let router_id = '';
+        if(!type_id_2){
+          router_id = proList[0].children[0].id
+        } else {
+          router_id = proList[0].children.filter(item => item.id == type_id_2)[0].id
+        }
+        let data = prolist.RECORDS.find(item => item.TypeID == router_id && item.IsShow == 1)
+        this.content = data.Content
+      }
+    },
     computed: {},
     watch: {
       $route(){
-        // type_id一定有，因为在routerName手动带入了
-        let {type_id,product_id} = this.$route.query;
-        let proList = datalist.data.solutionInfo.filter(item => item.type_id == type_id);
-        let product_name = '';
-        if(!product_id){
-          product_name = proList[0].product_name
-        } else {
-          product_name = proList.filter(item => item.product_id == product_id)[0].product_name
-        }
-        let data = prolist.RECORDS.filter(item => item.ProName == product_name && item.IsShow == 1)[0]
-        this.content = data.Content
+        this.init()
       },
     },
     filters: {}

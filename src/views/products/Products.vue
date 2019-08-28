@@ -8,7 +8,6 @@
           @change="handleChange"
           accordion
           style="margin-top: 20px;">
-          {{activeAsidePath}}
           <el-collapse-item
             :title="item.name"
             :name="item.name"
@@ -85,7 +84,7 @@
         this.Key = this.$route.path;
         this.pageTitle = this.$route.name;
 
-        this.deepChangeAttr(this.menuList)
+        this.deepChangeAttr(this.menuList, (listObj) => listObj.is_active = false);
         if (this.$route.query) {
           let {type_id_1,type_id_2,type_id_3} = this.$route.query
           let level1 = this.menuList.find(item => item.id == type_id_1);
@@ -117,18 +116,15 @@
         }
       },
       handleChange(activeAsidePath){
-        // let level1 = this.menuList.find(item => item.name == this.$route.query.type_id_1);
-        // level1.is_active = true
       },
       handleChildChange(childAsidePath){
-        this.childAsidePath = childAsidePath;
       },
-      deepChangeAttr(obj){
+      deepChangeAttr(obj,fn){
         for (let i in obj) {
           if(typeof obj[i] == 'object'){
-            this.deepChangeAttr(obj[i])
+            this.deepChangeAttr(obj[i],fn)
           } else {
-            obj.is_active = false
+            fn(obj)
           }
         }
       },
@@ -137,7 +133,7 @@
           let path = this.$route.path + '?type_id_1=' + grandParentItem.id + '&type_id_2=' + parentItem.id + '&type_id_3=' + item.id;
           this.$router.push(path);
           this.$store.commit('setFullPath',path,item.parent_id,item.id);
-          this.deepChangeAttr(this.menuList);
+          this.deepChangeAttr(this.menuList, (listObj) => listObj.is_active = false);
           item.is_active = true;
           grandParentItem.is_active = true;
           parentItem.is_active = true
