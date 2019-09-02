@@ -6986,6 +6986,11 @@ q@^1.1.2:
   resolved "https://registry.npm.taobao.org/q/download/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
+qiniu4js@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.npmjs.org/qiniu4js/-/qiniu4js-1.0.13.tgz#21e92c84cf363d5ac0cdf1ff17dffca0f0dd0d8c"
+  integrity sha512-gmsRQiiLk5aqIf6IiMyUqCXS/VO4CmadTbw/DWbH45Y9Dkm0lj497oZvwFZsDALtcPRqBSgcbD/PmcPI+ZZCHQ==
+
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"

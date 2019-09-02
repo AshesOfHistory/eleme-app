@@ -100,7 +100,8 @@
       },
       toDetail(item,parentItem){
         if(item && item.parent_id) {
-          let path = this.$route.path + '?type_id_1=' + parentItem.id + '&type_id_2='+item.id;
+          let pathPrefix = this.$route.matched[0].path + '/' + this.activeAsidePath;
+          let path = pathPrefix + '?type_id_1=' + parentItem.id + '&type_id_2='+item.id;
           parentItem.is_active = true;
           item.is_active = true;
           this.$router.push(path);
