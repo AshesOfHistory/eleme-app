@@ -6,13 +6,17 @@
     <el-upload
       class="upload-demo"
       drag
-      action="localhost:8888/upload"
-      multiple>
+      action="http://upload.qiniup.com"
+      accept="image/jpeg,image/gif,image/png,image/bmp"
+      :before-upload="beforeImageUpload"
+      :data="postData"
+      :on-success="handleImageUploadSuccess"
+      multiple="false">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
       <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
     </el-upload>
-    <!--@/assets/news/detailImgs/1-1.jpg-->
+    <img v-if="imgUrl" :src="imgUrl" alt="">
   </div>
 </template>
 
@@ -29,31 +33,41 @@
   import 'tinymce/plugins/fullscreen'// 全屏
   import 'tinymce/plugins/preview'// 预览
 
-  import {UploaderBuilder,Uploader} from 'qiniu4js';
-  let uploader = new UploaderBuilder().build();
+  // import {UploaderBuilder,Uploader} from 'qiniu4js';
+  // let uploader = new UploaderBuilder().build();
 
   import clipboard from '@/utils/clipboard'
+  import {genUpToken} from '../utils/qiniuToken';
+
   export default {
     model: {},
     props: {},
     components: {Editor},
     mixins: [],
     created() {
-
-
+      let token;
+      let policy = {};
+      let bucketName = 'lumitek';
+      let AK = '15fcfndab6PXTgbR-DI8KZChD7sDRtLE3xA31F9u';
+      let SK = 'HndjsL6RiGYQWrvNt9HDQWuHOScBv872X8Hx9oBd';
+      let deadline = Math.round(new Date().getTime() / 1000) +3600;
+      policy.scopt = bucketName;
+      policy.deadline = deadline
+      token = genUpToken(AK,SK,policy)
+      this.postData.token = token;
+      console.log(token)
     },
     mounted() {
       tinymce.init({
         images_upload_handler: (blobInfo, success, failure) => {
-          console.log(blobInfo)
           success()
-          // const img = "data:image/jpeg;base64," + blobInfo.base64();
-          // success(img);
         }
       })
     },
     data() {
       return {
+        imgUrl: null,
+        postData:{},
         tinymceHtml: '',
         init: {
           language_url: '/tinymce/zh_CN.js',
@@ -82,7 +96,21 @@
       save(event,html){
         console.log(this.tinymceHtml)
         clipboard(event, html)
-      }
+      },
+      handleImageUploadSuccess(res, file){
+        this.imgUrl = URL.createObjectURL(file.row)
+        console.log(this.imgUrl)
+      },
+      beforeImageUpload(file){
+        const isLimited = file.size / 1024 / 1024 < 50;
+        if(!isLimited) {
+          this.$message({
+            showClose: true,
+            message: '文件大小不得超过50M',
+            type: 'error'
+          });
+        }
+      },
     },
     computed: {},
     watch: {},
